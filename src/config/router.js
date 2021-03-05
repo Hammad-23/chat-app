@@ -8,6 +8,7 @@ import {
 import Chats from '../views/chats'
 import ChatRoom from '../views/chatroom'
 import SignUp from '../views/signup'
+import LogIn from '../views/login'
 export default function ReactRouter() {
   return (
     <Router>
@@ -24,6 +25,9 @@ export default function ReactRouter() {
           </Route>
           <Route path="/chats" >
             <Chats />
+          </Route>
+          <Route path="/login" >
+            <LogIn />
           </Route>
         </Switch>
       </div>

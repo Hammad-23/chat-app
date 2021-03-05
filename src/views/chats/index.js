@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getAllUsers, joinRoom } from "../../config/firebase";
+import { useHistory } from "react-router-dom";
 
 export default function Chats() {
+  let history = useHistory();
   const [users, setUsers] = useState([]);
   useEffect(async () => {
     try {
@@ -16,9 +18,11 @@ export default function Chats() {
       alert(e.message);
     }
   }, []);
-  const navigateToChat =(id)=>{
-    joinRoom(id)
-  }
+  const navigateToChat = async (id) => {
+    const chatroom = await joinRoom(id);
+    console.log("chatroom**", chatroom.id);
+    history.push(`/chatroom/${chatroom.id}`);
+  };
   return (
     <div>
       <h1>Chats</h1>
@@ -27,7 +31,7 @@ export default function Chats() {
         return (
           <>
             <li key={id}>{fullname}</li>
-            <button onClick={()=>navigateToChat(id)}>Chat</button>
+            <button onClick={() => navigateToChat(id)}>Chat</button>
           </>
         );
       })}

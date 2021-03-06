@@ -4,6 +4,7 @@ export default function Button(props) {
   return (
     <>
       <button
+      onClick={props.onClick}
         style={{
           backgroundColor: "blue",
           border: "none",
